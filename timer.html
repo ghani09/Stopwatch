@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+       <meta charset="UTF-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1" />
+       <style>
+        *{
+              margin:0;
+              padding:0;
+         
+        }
+        body{
+            background-color: bisque;
+        }
+        .box{
+            width:400px;
+            height:400px;
+            border-radius: 50%;
+            margin:auto;
+         
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:space-evenly;
+            background: rgba(87, 116, 96, 0.6);
+            border:1px solid grey;
+        }
+        .box1{
+            width:500px;
+            height:500px;
+            border-radius: 50%;
+            margin:auto;
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:space-evenly;
+            background: rgba(87, 116, 96, 0.6);
+            border:1px solid grey;
+        }
+        .btnSection{
+            width :80%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        #btn1,
+        #btn2,
+        #btn3{
+            width: 60px;
+            height:60px;
+            border-radius: 30%;
+            border: none;
+            background: rgba(88,43,76,0.6)
+        }
+        #btn1:hover{
+            background: rgba(0,200,0,0.6);
+            color:white;
+        }
+        #btn2:hover{
+            background: rgba(200,0,0,0.6);
+            color:white;
+        }
+        #btn3:hover{
+            background: rgba(252,0,252,0.6);
+            color:white;
+        }
+        #timer{
+            width:40%;
+            height:10%;
+            background-color: white;
+            border:1px solid black;
+            border-radius:1px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2em;
+            
+        }
+        h1{
+            color:#fff;
+        }
+        #alert{
+            
+            display: block;
+             width:120px;
+             height:40px;
+            text-align: center;
+            
+            
+        }
+        #text{
+           
+            color :red;
+            font-family: 'arial';
+            font-size: 2em;
+           
+        }
+        
+
+    
+       </style>
+
+    </head>
+
+    <body>
+        <div class="box1">
+        <div class="box">
+          <h1> STOP WATCH </h1>
+          <div id="timer"> <p><span id="seconds">00</span>:<span id="tens">00</span></p></div>
+
+          <div id ="alert"><p><span id = "text"></span></p></div>
+          <section class="btnSection">
+            <button   id="btn1">START</button>
+            <button   id="btn2">STOP</button>
+            <button id="btn3">RESET</button>
+          </section>
+        </div>
+    </div>
+          <script>
+
+
+         /* function showTime(){
+                
+              setInterval( function runtime(){
+                   const d = new Date();
+                let h = d.getHours();
+                 let m = d.getMinutes();
+               let s = d.getSeconds();
+             let time = h + ":" + m + ":" + s;
+            
+            
+                document.getElementById("timer").innerHTML = time;
+                /*document.getElementById("timer").style.textAlign= "center";
+              },1000)
+            } 
+            
+            
+           
+              function stopFunction(){
+                clearInterval(showTime)
+            
+                     
+              }  */
+
+              window.onload = function () {
+  
+  var seconds = 00; 
+  var tens = 00; 
+  var appendTens = document.getElementById("tens")
+  var appendSeconds = document.getElementById("seconds")
+  var buttonStart = document.getElementById('btn1');
+  var buttonStop = document.getElementById('btn2');
+  var buttonReset = document.getElementById('btn3');
+  var Text = document.getElementById("text");
+  var Interval ;
+
+  buttonStart.onclick = function() {
+    buttonStart.style.background ="rgba(0,200,0,0.6)";
+    buttonStart.style.color ="#fff";
+    buttonStop.style.color = "black";
+    buttonReset.style.color="black";
+    buttonReset.style.background="rgba(88,43,76,0.6)";
+    buttonStop.style.background="rgba(88,43,76,0.6)";
+    Text.innerHTML ="";
+    clearInterval(Interval);
+     Interval = setInterval(startTimer, 100);
+  }
+  
+    buttonStop.onclick = function() {
+        buttonStop.style.background="rgba(200,0,0,0.6)";
+        buttonStop.style.color ="#fff";
+        buttonStart.style.color ="black";
+        buttonReset.style.color="black";
+        buttonStart.style.background ="rgba(88,43,76,0.6)";
+        buttonReset.style.background="rgba(88,43,76,0.6)";
+        Text.innerHTML ="TimeUP";
+       clearInterval(Interval);
+     
+
+  }
+  
+
+  buttonReset.onclick = function() {
+    buttonReset.style.background="rgba(252,0,252,0.6)";
+    buttonReset.style.color="#fff";
+    buttonStart.style.color ="black";
+    buttonStop.style.color = "black";
+    buttonStop.style.background="rgba(88,43,76,0.6)";
+        buttonStart.style.background ="rgba(88,43,76,0.6)";
+        Text.innerHTML ="";
+     clearInterval(Interval);
+    tens = "00";
+  	seconds = "00";
+    appendTens.innerHTML = tens;
+  	appendSeconds.innerHTML = seconds;
+  }
+  
+   
+  
+  function startTimer () {
+    tens++; 
+    
+    if(tens <= 9){
+      appendTens.innerHTML = "0" + tens;
+    }
+    
+    if (tens > 9){
+      appendTens.innerHTML = tens;
+      
+    } 
+    
+    if (tens > 99) {
+      console.log("seconds");
+      seconds++;
+      appendSeconds.innerHTML = "0" + seconds;
+      tens = 0;
+      appendTens.innerHTML = "0" + 0;
+    }
+    
+    if (seconds > 9){
+      appendSeconds.innerHTML = seconds;
+    }
+  
+  }
+  
+
+}
+          </script>
+
+    </body>
+</html>
